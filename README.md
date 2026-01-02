@@ -1,46 +1,43 @@
-# Policy_Compliant_Agent
+# Finance Product Recommendation System
 
-A smart AI-powered Compliance Auditor Assistant designed to analyze documents, extract relevant compliance information, and determine whether they meet specified policy standards such as GDPR. This tool leverages embeddings, similarity search, and LLMs to provide detailed compliance assessments based on custom policies and similar documents.
+An AI-powered Client Product Recommendation System designed to predict whether a client will subscribe to a financial product (e.g., a term deposit) based on their profile and historical data. This system leverages feature embeddings, vector search, and ML inference pipelines to provide personalized product recommendations.
 
 ---
 
 ## Features
-
-- **Document Chunk Analysis:** Reads and analyzes PDF document chunks for compliance-relevant entities.
-- **Policy Matching:** Retrieves and cross-checks document content against relevant policy rules using semantic search.
-- **Similar Document Reference:** Finds and compares similar documents to strengthen audit decisions.
-- **Compliance Decision:** Outputs a clear **Compliant** or **Non-Compliant** status with detailed explanations.
-- **Extensible Tools:** Easily integrate additional policy collections and compliance questions.
-- **Gradio UI:** User-friendly interface for uploading documents, entering queries, and viewing compliance reports.
+- **Client Profile Analysis:** Processes client data including age, balance, campaign interaction, previous product history, and more.
+- **Hybrid Recommendation:** Combines classic ML preprocessing (numeric + categorical features) with embedding-based similarity search for improved recommendations.
+- **Personalized Prediction:** Predicts subscription likelihood with a clear Yes / No verdict.
+- **Evaluation & Metrics:** Outputs evaluation metrics (accuracy, precision, recall, F1-score) and confusion matrices to monitor model performance.
+- **Extensible Pipeline:** Modular preprocessing, inference, and upsert logic for easy experimentation and scaling.
+- **API Ready:** Flask API for serving recommendations in real-time.
 - **Dockerized:** Ready for containerized deployment.
 
 ---
 
 ## Architecture
-
-- **Embeddings & Vector Search:** Uses a vector database (e.g., ChromaDB) to store and query policy rules and similar documents efficiently.
-- **Large Language Model (LLM):** Applies an LLM to reason about compliance based on the context, retrieved policies, and related documents.
-- **Gradio Frontend:** Provides an interactive web UI for document upload and compliance queries.
-- **Modular Tools:** Custom tools like `find_matching_policies` and `find_similar_documents` encapsulate business logic.
+- **Preprocessing Pipeline:** Handles numeric scaling, categorical encoding, and binary feature mapping.
+- **Embedding Generation:** Converts client profiles into vector embeddings for similarity search and ML inference.
+- **Vector Search Database:** Uses a vector database (e.g., Qdrant) to store historical client embeddings for fast similarity queries.
+- **Inference Pipeline:** Generates predictions by combining ML models with nearest-neighbor matching in the vector database.
+- **Flask API / Frontend:** Provides endpoints for real-time subscription predictions and batch evaluation.
 
 ---
 
 ## Getting Started
 
 ### Prerequisites
-
 - Python 3.11+
 - Docker (optional, for containerized deployment)
-- Access to OpenAI API or other LLM providers like Ollama
-- Vector database setup (e.g., ChromaDB)
-
+- Vector database setup (e.g., Qdrant)
+  
 ### Installation
 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/SilasPenda/Policy-Compliant-Auditing-Agent
-   cd policy-compliance-auditor
+   git clone https://github.com/SilasPenda/Finance_Product_Recommendation_System
+   cd Finance_Product_Recommendation_System
 
 2. Create & activate virtual environment:
 
@@ -55,11 +52,9 @@ A smart AI-powered Compliance Auditor Assistant designed to analyze documents, e
    python -m pip install --upgrade pip
    pip install -r requirements.txt
 
-4. Create .env file and add OPEN_AI_KEY
-
-5. Using NB_1.ipynb, create collections for documents and policies (policy.yaml):
+4. Create .env and config.yaml files
 
 6. Start App
 
    ```bash
-   python app.py
+   python deployment/api.py
