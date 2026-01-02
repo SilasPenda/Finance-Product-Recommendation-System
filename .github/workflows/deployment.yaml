@@ -20,7 +20,7 @@ jobs:
           docker run -d \
             --name finance-product-recommender \
             -p 8080:8080 \
-            inance-product-recommender
+            finance-product-recommender
 
       # Wait for startup
       - name: Wait for agent
@@ -33,4 +33,4 @@ jobs:
       # Always clean up
       - name: Cleanup
         if: always()
-        run: docker rm -f inance-product-recommender
+        run: docker rm -f finance-product-recommender
