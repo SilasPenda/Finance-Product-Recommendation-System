@@ -22,8 +22,8 @@ load_dotenv()
 )
 
 def test_qdrant_retrieval():
+    inference = Inference()
     collection = os.getenv("COLLECTION_NAME")
-    pipeline = joblib.load(os.getenv("DATA_TRANSFORMER"))
 
     config = get_config(os.path.join(os.getcwd(), "config.yaml"))
     feature_columns = config["FEATURE_COLUMNS"]
@@ -35,7 +35,7 @@ def test_qdrant_retrieval():
     df = df.sample(1)
 
     features = df[feature_columns]
-    embeddings = pipeline.transform(features)
+    embeddings = inference.preprocess(features)
 
     response = client.query_points(
             collection_name=collection,
