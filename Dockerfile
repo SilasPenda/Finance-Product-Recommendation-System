@@ -21,6 +21,7 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 COPY deployment/ deployment/
 COPY src/ src/
 COPY requirements.txt .
+COPY config.yaml .
 # COPY .env .
 
 # Install Python dependencies
