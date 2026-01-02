@@ -22,12 +22,13 @@ class Upserter:
     def __init__(self, client):
         self.client = client
 
-    def _ensure_collection(self, collection_name: str, vector_size: int=384):
+    def _ensure_collection(self, collection_name: str, vector_size):
         """
         Create the collection if it does not already exist.
         """
         if self.client.collection_exists(collection_name):
-            return
+            # return
+            self.client.delete_collection(collection_name)
 
         self.client.create_collection(
             collection_name=collection_name,

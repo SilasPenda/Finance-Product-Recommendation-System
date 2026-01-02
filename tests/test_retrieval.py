@@ -59,4 +59,4 @@ def test_qdrant_retrieval():
     assert results is not None, "No retrieval results returned."
         
     # Cleanup
-    client.delete_collection(collection_name=collection)
+    # client.delete_collection(collection_name=collection)
