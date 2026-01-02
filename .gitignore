@@ -1,6 +1,8 @@
 .DS_Store
 Part_II/
 .secrets
+artifacts/evaluation/
+artifacts/data_transformers/
 bank_marketing_data.csv
 
 
