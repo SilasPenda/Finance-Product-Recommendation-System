@@ -1,0 +1,36 @@
+name: API CI
+
+on:
+  push:
+    paths:
+      - deployment/**
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build agent image
+        run: docker build -t finance-product-recommender .
+
+      - name: Run agent container
+        run: |
+          docker run -d \
+            --name finance-product-recommender \
+            -p 8080:8080 \
+            inance-product-recommender
+
+      # Wait for startup
+      - name: Wait for agent
+        run: sleep 10
+
+      # Smoke test
+      - name: Health check
+        run: curl http://localhost:8080/health
+
+      # Always clean up
+      - name: Cleanup
+        if: always()
+        run: docker rm -f inance-product-recommender

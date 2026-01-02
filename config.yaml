@@ -1,0 +1,9 @@
+NUMERIC_FEATURES: ['age', 'balance', 'campaign', 'pdays', 'previous']
+CATEGORICAL_FEATURES: ['job', 'marital', 'education', 'default', 'housing', 'loan', 'contact', 'poutcome']
+TARGET: 'term_deposit_subscribed'
+
+FEATURE_COLUMNS: [
+        "client_id", "age", "balance", "campaign", "pdays", "previous",
+        "job", "marital", "education", "default",
+        "housing", "loan", "contact", "poutcome"
+    ]
